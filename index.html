@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golden Lion Chocolate | Имперский шоколад</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpolygon points='32 4 56 18 56 46 32 60 8 46 8 18' fill='%23d8ad47'/%3E%3Cpath d='M32 4 56 18 32 32 8 18Z' fill='%23f5d77b'/%3E%3C/svg%3E">
+    <style>
+        :root {
+            color-scheme: dark;
+            --ink: #150b07;
+            --cacao: #26110a;
+            --cacao-soft: #3b2015;
+            --wine: #671f27;
+            --lapis: #17324a;
+            --cream: #f5e7cf;
+            --cream-muted: #d8c5aa;
+            --gold: #d8ad47;
+            --gold-bright: #f5d77b;
+            --line: rgba(216, 173, 71, 0.38);
+            --veil: rgba(16, 8, 5, 0.7);
+            --shadow: 0 26px 70px rgba(0, 0, 0, 0.42);
+            --serif: "Cormorant Garamond", "Iowan Old Style", Georgia, "Times New Roman", serif;
+            --body: "Lora", "Iowan Old Style", Georgia, "Times New Roman", serif;
+            --slavic: "Ponomar Unicode", "Paratype Russicon", "Cormorant Garamond", Georgia, serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            min-width: 320px;
+            background:
+                radial-gradient(circle at 15% 0%, rgba(103, 31, 39, 0.36), transparent 34rem),
+                radial-gradient(circle at 85% 18%, rgba(23, 50, 74, 0.34), transparent 30rem),
+                linear-gradient(125deg, #140806 0%, #29130b 44%, #120807 100%);
+            color: var(--cream);
+            font-family: var(--body);
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        p {
+            margin: 0 0 1rem;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .page-shell {
+            overflow: clip;
+        }
+
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            border-bottom: 1px solid rgba(216, 173, 71, 0.22);
+            background: rgba(18, 8, 6, 0.84);
+            backdrop-filter: blur(16px);
+        }
+
+        .nav-inner {
+            width: min(1180px, calc(100% - 32px));
+            min-height: 68px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+        }
+
+        .brand-mark {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            font-family: var(--slavic);
+            font-weight: 800;
+            letter-spacing: 0;
+            text-transform: uppercase;
+        }
+
+        .brand-mark::before {
+            content: "";
+            width: 34px;
+            height: 34px;
+            flex: 0 0 34px;
+            border: 1px solid var(--gold-bright);
+            background:
+                linear-gradient(135deg, rgba(245, 215, 123, 0.95), rgba(154, 96, 33, 0.72)),
+                radial-gradient(circle, rgba(255, 255, 255, 0.38), transparent 62%);
+            clip-path: polygon(50% 0, 92% 20%, 100% 66%, 50% 100%, 0 66%, 8% 20%);
+            box-shadow: 0 0 26px rgba(216, 173, 71, 0.34);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.82rem;
+            color: var(--cream-muted);
+        }
+
+        .nav-links a {
+            min-height: 38px;
+            display: inline-flex;
+            align-items: center;
+            padding: 0 12px;
+            border: 1px solid transparent;
+            text-decoration: none;
+        }
+
+        .nav-links a:hover,
+        .nav-links a:focus-visible {
+            border-color: var(--line);
+            color: var(--cream);
+            outline: none;
+        }
+
+        .section {
+            position: relative;
+            isolation: isolate;
+            padding: clamp(64px, 9vw, 124px) 0;
+        }
+
+        .section.compact {
+            padding-block: clamp(48px, 7vw, 86px);
+        }
+
+        .section::before {
+            content: "";
+            position: absolute;
+            inset: 18px;
+            z-index: -1;
+            border: 1px solid rgba(216, 173, 71, 0.14);
+            pointer-events: none;
+        }
+
+        .section.alt {
+            background: rgba(0, 0, 0, 0.18);
+        }
+
+        .wrap {
+            width: min(1180px, calc(100% - 32px));
+            margin: 0 auto;
+        }
+
+        .hero {
+            min-height: calc(100svh - 68px);
+            display: grid;
+            align-items: end;
+            padding-top: clamp(48px, 7vw, 92px);
+            padding-bottom: clamp(40px, 7vw, 82px);
+        }
+
+        .hero-media {
+            position: absolute;
+            inset: 0;
+            z-index: -2;
+        }
+
+        .hero-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.74;
+        }
+
+        .hero::after,
+        .image-band::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background:
+                linear-gradient(90deg, rgba(18, 8, 6, 0.88) 0%, rgba(18, 8, 6, 0.56) 48%, rgba(18, 8, 6, 0.26) 100%),
+                linear-gradient(0deg, rgba(18, 8, 6, 0.88) 0%, transparent 42%, rgba(18, 8, 6, 0.36) 100%);
+        }
+
+        .hero-content {
+            width: min(790px, 100%);
+            padding-bottom: 7vh;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 18px;
+            color: var(--gold-bright);
+            font-family: var(--slavic);
+            font-size: 0.9rem;
+            font-weight: 800;
+            letter-spacing: 0;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 44px;
+            height: 1px;
+            background: var(--gold);
+        }
+
+        h1,
+        h2,
+        h3 {
+            margin: 0;
+            font-family: var(--serif);
+            font-weight: 750;
+            line-height: 0.98;
+            letter-spacing: 0;
+        }
+
+        h1 {
+            max-width: 11ch;
+            font-size: 8.6rem;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            max-width: 900px;
+            font-size: 5.2rem;
+        }
+
+        h3 {
+            font-size: 2.1rem;
+        }
+
+        .hero-lede {
+            max-width: 690px;
+            margin-top: 24px;
+            color: var(--cream);
+            font-size: 1.45rem;
+        }
+
+        .actions {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 28px;
+        }
+
+        .btn {
+            min-height: 50px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 0 22px;
+            border: 1px solid rgba(245, 215, 123, 0.82);
+            background: linear-gradient(135deg, #9f692a, #f2d26e 48%, #936221);
+            color: #170b06;
+            font-family: var(--serif);
+            font-size: 1rem;
+            font-weight: 800;
+            text-decoration: none;
+            text-transform: uppercase;
+            box-shadow: 0 14px 34px rgba(0, 0, 0, 0.32);
+            transition: transform 160ms ease, filter 160ms ease;
+        }
+
+        .btn:hover,
+        .btn:focus-visible {
+            transform: translateY(-2px);
+            filter: brightness(1.06);
+            outline: none;
+        }
+
+        .btn.secondary {
+            background: rgba(18, 8, 6, 0.42);
+            color: var(--cream);
+            border-color: rgba(216, 173, 71, 0.44);
+        }
+
+        .ogogo {
+            display: inline-block;
+            color: var(--gold-bright);
+            font-family: var(--serif);
+            font-size: 5.4rem;
+            font-weight: 900;
+            line-height: 1;
+            text-shadow: 0 0 12px rgba(245, 215, 123, 0.58), 0 0 34px rgba(216, 173, 71, 0.32);
+            transform: rotate(-4deg);
+        }
+
+        .slavic-latin {
+            font-family: var(--slavic);
+            font-weight: 800;
+            letter-spacing: 0;
+            text-transform: uppercase;
+        }
+
+        .gold {
+            color: var(--gold-bright);
+        }
+
+        .section-head {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(240px, 420px);
+            gap: clamp(24px, 5vw, 76px);
+            align-items: end;
+            margin-bottom: clamp(32px, 5vw, 58px);
+        }
+
+        .section-head > *,
+        .split > *,
+        .quote-row > *,
+        .contact-strip > *,
+        .card-grid > *,
+        .two-up > *,
+        .gallery > * {
+            min-width: 0;
+        }
+
+        .section-kicker {
+            max-width: 420px;
+            color: var(--cream-muted);
+            font-size: 1.03rem;
+        }
+
+        .split {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(300px, 0.9fr);
+            gap: clamp(28px, 5vw, 72px);
+            align-items: center;
+        }
+
+        .split.reverse {
+            grid-template-columns: minmax(300px, 0.92fr) minmax(0, 1fr);
+        }
+
+        .copy {
+            max-width: 690px;
+        }
+
+        .copy .lead {
+            color: var(--cream);
+            font-size: 1.35rem;
+        }
+
+        .note {
+            margin-top: 24px;
+            padding: 20px 22px;
+            border-left: 3px solid var(--gold);
+            background: rgba(255, 255, 255, 0.045);
+            color: var(--cream);
+            font-style: italic;
+        }
+
+        .image-frame {
+            position: relative;
+            border: 1px solid var(--line);
+            background: rgba(0, 0, 0, 0.2);
+            box-shadow: var(--shadow);
+        }
+
+        .image-frame::after {
+            content: "";
+            position: absolute;
+            inset: 10px;
+            border: 1px solid rgba(245, 215, 123, 0.22);
+            pointer-events: none;
+        }
+
+        .image-frame img {
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            object-fit: cover;
+        }
+
+        .image-frame.wide img {
+            aspect-ratio: 16 / 10;
+        }
+
+        .image-frame.square img {
+            aspect-ratio: 1 / 1;
+        }
+
+        .two-up {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .story-card {
+            min-height: 100%;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.045);
+            box-shadow: var(--shadow);
+        }
+
+        .story-card img {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+        }
+
+        .story-card-body {
+            padding: 24px;
+        }
+
+        .story-card p {
+            color: var(--cream-muted);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .feature {
+            min-height: 168px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 22px;
+            border-top: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .feature strong {
+            color: var(--gold-bright);
+            font-family: var(--serif);
+            font-size: 1.3rem;
+            line-height: 1.1;
+        }
+
+        .feature span {
+            color: var(--cream-muted);
+        }
+
+        .image-band {
+            min-height: 640px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .image-band > img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+            opacity: 0.78;
+        }
+
+        .band-copy {
+            max-width: 760px;
+        }
+
+        .band-copy p {
+            font-size: 1.45rem;
+        }
+
+        .quote-row {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(260px, 0.46fr);
+            gap: clamp(24px, 4vw, 52px);
+            align-items: center;
+        }
+
+        .quote-mark {
+            color: var(--gold-bright);
+            font-family: var(--serif);
+            font-size: 2.3rem;
+            line-height: 1.18;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .gallery figure {
+            margin: 0;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .gallery img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            transition: transform 240ms ease;
+        }
+
+        .gallery figure:hover img {
+            transform: scale(1.035);
+        }
+
+        .gallery figcaption {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 28px 16px 14px;
+            background: linear-gradient(0deg, rgba(15, 7, 5, 0.92), transparent);
+            color: var(--cream);
+            font-family: var(--serif);
+            font-size: 1.15rem;
+        }
+
+        .contact-strip {
+            display: grid;
+            grid-template-columns: minmax(0, 0.95fr) minmax(280px, 1fr);
+            gap: clamp(28px, 5vw, 72px);
+            align-items: center;
+        }
+
+        .contact-list {
+            display: grid;
+            gap: 12px;
+            margin-top: 22px;
+            color: var(--cream-muted);
+        }
+
+        .contact-list span {
+            color: var(--cream);
+        }
+
+        .finale {
+            min-height: 72svh;
+            display: grid;
+            align-items: center;
+            text-align: center;
+        }
+
+        .finale .wrap {
+            max-width: 900px;
+        }
+
+        .finale h2 {
+            margin-inline: auto;
+        }
+
+        footer {
+            padding: 34px 0;
+            border-top: 1px solid rgba(216, 173, 71, 0.22);
+            color: var(--cream-muted);
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: opacity 700ms ease, transform 700ms ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 920px) {
+            body {
+                font-size: 16px;
+            }
+
+            h1 {
+                font-size: 5.8rem;
+            }
+
+            h2 {
+                font-size: 4.1rem;
+            }
+
+            h3 {
+                font-size: 1.85rem;
+            }
+
+            .hero-lede,
+            .band-copy p {
+                font-size: 1.25rem;
+            }
+
+            .copy .lead {
+                font-size: 1.22rem;
+            }
+
+            .quote-mark {
+                font-size: 1.9rem;
+            }
+
+            .ogogo {
+                font-size: 4.2rem;
+            }
+
+            .nav-inner {
+                min-height: 62px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                min-height: 760px;
+            }
+
+            .hero::after,
+            .image-band::after {
+                background:
+                    linear-gradient(0deg, rgba(18, 8, 6, 0.9) 0%, rgba(18, 8, 6, 0.58) 56%, rgba(18, 8, 6, 0.36) 100%);
+            }
+
+            .section-head,
+            .split,
+            .split.reverse,
+            .quote-row,
+            .contact-strip {
+                grid-template-columns: 1fr;
+            }
+
+            .split.reverse .image-frame,
+            .split.reverse .two-up {
+                order: 2;
+            }
+
+            .features,
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .card-grid,
+            .two-up {
+                grid-template-columns: 1fr;
+            }
+
+            .image-band {
+                min-height: 620px;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .wrap,
+            .nav-inner {
+                width: min(100% - 24px, 1180px);
+            }
+
+            .brand-mark {
+                font-size: 0.82rem;
+            }
+
+            .section {
+                padding-block: 54px;
+            }
+
+            .section::before {
+                inset: 10px;
+            }
+
+            .hero {
+                min-height: 720px;
+            }
+
+            h1 {
+                font-size: 4.05rem;
+                max-width: 9ch;
+            }
+
+            h2 {
+                font-size: 3.05rem;
+            }
+
+            h3 {
+                font-size: 1.55rem;
+            }
+
+            .hero-lede,
+            .band-copy p,
+            .copy .lead {
+                font-size: 1.08rem;
+            }
+
+            .quote-mark {
+                font-size: 1.45rem;
+            }
+
+            .ogogo {
+                font-size: 3.2rem;
+            }
+
+            .actions {
+                align-items: stretch;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .feature {
+                min-height: 132px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-shell">
+        <nav class="nav" aria-label="Основная навигация">
+            <div class="nav-inner">
+                <a class="brand-mark" href="#top">Golden Lion Chocolate</a>
+                <div class="nav-links">
+                    <a href="#heritage">Наследие</a>
+                    <a href="#sculpture">Скульптура</a>
+                    <a href="#gallery">Коллекция</a>
+                    <a href="#order">Заказ</a>
+                </div>
+            </div>
+        </nav>
+
+        <main id="top">
+            <section class="section hero">
+                <div class="hero-media" aria-hidden="true">
+                    <img src="assets/img/hero-golden-lion.jpg" alt="">
+                </div>
+                <div class="wrap">
+                    <div class="hero-content reveal">
+                        <span class="eyebrow">Скульптура в золоте</span>
+                        <h1 class="slavic-latin">Golden Lion</h1>
+                        <p class="hero-lede">Шоколад как коллекционный объект: барочная театральность, классическая форма и пищевое золото 24 карата.</p>
+                        <div class="actions">
+                            <a class="btn" href="#order">Запросить работу</a>
+                            <a class="btn secondary" href="#heritage">Смотреть историю</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section compact" id="heritage">
+                <div class="wrap">
+                    <div class="section-head reveal">
+                        <div>
+                            <span class="eyebrow">XIX век и новая мастерская</span>
+                            <h2>От Леневых до Абрикосовых — через века к <span class="slavic-latin gold">Golden Lion</span></h2>
+                        </div>
+                        <p class="section-kicker">Мы не копируем фабрики прошлого. Мы берем их масштаб, дисциплину и вкус к церемонии, чтобы сделать современный шоколад предметом внимания.</p>
+                    </div>
+                    <div class="card-grid reveal">
+                        <article class="story-card">
+                            <img src="assets/img/lenev-factory.jpg" alt="Историческая шоколадная фабрика в стиле XIX века">
+                            <div class="story-card-body">
+                                <h3>Фабрика Леневых</h3>
+                                <p>Европейская технология, русская торжественность и ремесленная точность в каждом жесте.</p>
+                            </div>
+                        </article>
+                        <article class="story-card">
+                            <img src="assets/img/abrikosov-label.jpg" alt="Коллекционная шоколадная этикетка в имперском стиле">
+                            <div class="story-card-body">
+                                <h3>Товарищество Абрикосовых</h3>
+                                <p>Подарочная культура, золото упаковки и ощущение десерта, достойного парадного стола.</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section alt" id="theater">
+                <div class="wrap split">
+                    <div class="copy reveal">
+                        <span class="eyebrow">Театр Буданкова</span>
+                        <h2>Где придуман <span class="slavic-latin gold">Golden Lion Chocolate</span>?</h2>
+                        <p class="lead">Идея родилась как театральное действие: барокко, классицизм и шоколадная пластика становятся не сувениром, а сценой.</p>
+                        <div class="note">Шоколад покрывает настоящее пищевое золото 24 карата в стилистике XIX века.</div>
+                    </div>
+                    <div class="image-frame reveal">
+                        <img src="assets/img/theater-gold-chocolate.jpg" alt="Золотая шоколадная скульптура на театральном столе">
+                    </div>
+                </div>
+            </section>
+
+            <section class="section image-band">
+                <img src="assets/img/time-ingredient-bg.jpg" alt="">
+                <div class="wrap">
+                    <div class="band-copy reveal">
+                        <span class="eyebrow">Главный ингредиент</span>
+                        <h2>Время не допускает массового производства.</h2>
+                        <p>Каждая деталь создается вручную, как ювелирный объект: форма, блеск, вес, тишина перед подачей.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="sculpture">
+                <div class="wrap split reverse">
+                    <div class="two-up reveal">
+                        <div class="image-frame square">
+                            <img src="assets/img/sculpted-in-gold.jpg" alt="Скульптурный золотой шоколад крупным планом">
+                        </div>
+                        <div class="image-frame square">
+                            <img src="assets/img/request-piece-detail.jpg" alt="Деталь золотой шоколадной работы на бархатной подложке">
+                        </div>
+                    </div>
+                    <div class="copy reveal">
+                        <span class="eyebrow">Sculpted in Gold</span>
+                        <h2>Как за рубежом представляют Петра Первого в Версале</h2>
+                        <p class="lead">Масштаб, дисциплина и блеск. Шоколад выглядит как объект из кабинета редкостей, но остается десертом, который можно подарить.</p>
+                        <div class="features">
+                            <div class="feature">
+                                <strong>Collectible object</strong>
+                                <span>Плитка воспринимается как вещь, которую хочется рассматривать.</span>
+                            </div>
+                            <div class="feature">
+                                <strong>Ручная работа</strong>
+                                <span>Контроль формы, поверхности и каждого миллиметра.</span>
+                            </div>
+                            <div class="feature">
+                                <strong>24K gold</strong>
+                                <span>Пищевое золото в логике ювелиров и часовщиков.</span>
+                            </div>
+                        </div>
+                        <div class="actions">
+                            <a class="btn" href="#order">Заказать скульптуру</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section image-band alt">
+                <img src="assets/img/degustation-bg.jpg" alt="">
+                <div class="wrap">
+                    <div class="band-copy reveal">
+                        <span class="eyebrow">Dégustation à la Russe</span>
+                        <h2>Органолептика для балов и приемов.</h2>
+                        <p>Насыщенный аромат, мягкая текстура и глубокий вкус соединяются с холодным сиянием золота.</p>
+                        <div class="note">Элегантный шоколад создает атмосферу заботы и любви. Привлекает внимание. Отличный подарок на День влюбленных.</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section compact" id="anna">
+                <div class="wrap quote-row">
+                    <div class="copy reveal">
+                        <span class="eyebrow">Ресторан «Анна»</span>
+                        <h2>Погружение в эпоху расцвета империй</h2>
+                        <p class="lead">Большая Дмитровка, 10, стр. 4. Французская подача, сливки, ваниль, крем-чиз и <span class="slavic-latin gold">Golden Lion Chocolate</span> с пищевым золотом.</p>
+                        <p class="quote-mark">«Приходите и почувствуйте вкус истории»</p>
+                    </div>
+                    <div class="image-frame square reveal">
+                        <img src="assets/img/restaurant-anna-pairing.jpg" alt="Золотой шоколад на кремовой ресторанной подаче">
+                    </div>
+                </div>
+            </section>
+
+            <section class="section alt">
+                <div class="wrap split">
+                    <div class="copy reveal">
+                        <span class="eyebrow">Не фабрика — лаборатория</span>
+                        <h2>Молодые таланты продолжают традицию</h2>
+                        <p class="lead">Как Леневы и Абрикосовы начинали с малых мастерских, мы создаем новый взгляд на традиции и передаем их следующему поколению.</p>
+                        <div class="ogogo">ОГОГО!</div>
+                        <div class="note">Обязательно хранить традиции, но говорить с современным зрителем на языке сильной формы.</div>
+                    </div>
+                    <div class="image-frame wide reveal">
+                        <img src="assets/img/traditions-studio.jpg" alt="Творческая шоколадная лаборатория с золотыми деталями">
+                    </div>
+                </div>
+            </section>
+
+            <section class="section compact">
+                <div class="wrap split reverse">
+                    <div class="image-frame wide reveal">
+                        <img src="assets/img/volunteer-awards.jpg" alt="Торжественная волонтерская награда в золотом свете">
+                    </div>
+                    <div class="copy reveal">
+                        <span class="eyebrow">30 лет центру волонтеров</span>
+                        <h2>Творчество как благодарность</h2>
+                        <p class="lead">Лариса Сергеевна Каштэлян — премия «Сердце мира» в Риме. Ее ученики продолжают дело, соединяя ремесло, заботу и красоту.</p>
+                        <p>Команда благодарит приемную маму Светлану Похилько, фонды «Жизнь в движении», «Хочу ходить» и всех, кто помогает проектам расти.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="gallery">
+                <div class="wrap">
+                    <div class="section-head reveal">
+                        <div>
+                            <span class="eyebrow">Золотая коллекция</span>
+                            <h2>Даже чайная церемония достойна императора</h2>
+                        </div>
+                        <p class="section-kicker">Три визуальные линии: золото на шоколаде, композиция подарка и барочная упаковка для праздничного стола.</p>
+                    </div>
+                    <div class="gallery reveal">
+                        <figure>
+                            <img src="assets/img/gallery-gold.jpg" alt="Галерейный кадр золотого шоколада">
+                            <figcaption>Золотой шоколад</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="assets/img/gallery-composition.jpg" alt="Подарочная композиция с шоколадом и золотом">
+                            <figcaption>Подарочная композиция</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="assets/img/gallery-package.jpg" alt="Имперская упаковка Golden Lion без текста">
+                            <figcaption>Коллекционный объект</figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section alt">
+                <div class="wrap split">
+                    <div class="copy reveal">
+                        <span class="eyebrow">Hilltop Tea</span>
+                        <h2>Чай для <span class="slavic-latin gold">Golden Lion Chocolate</span></h2>
+                        <p class="lead">Цейлонский чай с морингой подается как аристократическое дополнение к золотому шоколаду: не фон, а вторая часть церемонии.</p>
+                        <div class="note">Идеальное дополнение к барочным приемам.</div>
+                    </div>
+                    <div class="image-frame reveal">
+                        <img src="assets/img/hilltop-tea-pairing.jpg" alt="Чайная церемония с золотым шоколадом">
+                    </div>
+                </div>
+            </section>
+
+            <section class="section compact" id="order">
+                <div class="wrap contact-strip">
+                    <div class="copy reveal">
+                        <span class="eyebrow">Заказ и контакты</span>
+                        <h2>Заказывайте себе и близким в подарок на любой праздник</h2>
+                        <p class="lead">Арт-шеф-шоколатье лично превращает шоколад в золотое произведение искусства.</p>
+                        <div class="actions">
+                            <a class="btn" href="mailto:hello@example.com?subject=Golden%20Lion%20Chocolate">Запросить работу</a>
+                        </div>
+                    </div>
+                    <div class="copy reveal">
+                        <div class="contact-list">
+                            <p>Instagram: <span>@golden_lion_chocolate</span></p>
+                            <p>Сайт: <span>axisrow.github.io/pohilko/</span></p>
+                            <p>Доступ: <span>по запросу</span></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section alt">
+                <div class="wrap">
+                    <div class="section-head reveal">
+                        <div>
+                            <span class="eyebrow">Петр I за рубежом</span>
+                            <h2>Барокко и классицизм в одной плитке</h2>
+                        </div>
+                        <p class="section-kicker">Пышность, золото и театральность держатся на строгой форме. Поэтому шоколад выглядит эффектно, но не превращается в декорацию.</p>
+                    </div>
+                    <div class="card-grid reveal">
+                        <article class="story-card">
+                            <img src="assets/img/baroque-peter.jpg" alt="Барочный образ Петра I в европейском дворцовом стиле">
+                            <div class="story-card-body">
+                                <h3>Барокко</h3>
+                                <p>Пышность, золото, движение и эффект ассамблеи.</p>
+                            </div>
+                        </article>
+                        <article class="story-card">
+                            <img src="assets/img/classicist-palace.jpg" alt="Классический дворцовый зал с золотым шоколадом">
+                            <div class="story-card-body">
+                                <h3>Классицизм</h3>
+                                <p>Строгость форм, античные мотивы и спокойная пропорция.</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section finale image-band">
+                <img src="assets/img/imperial-finale.jpg" alt="">
+                <div class="wrap">
+                    <div class="reveal">
+                        <span class="eyebrow">Следуйте за львом</span>
+                        <h2 class="slavic-latin">Golden Lion Chocolate</h2>
+                        <p class="hero-lede">Шоколад, достойный императорского двора. Наследник традиций Леневых и Абрикосовых.</p>
+                        <div class="ogogo">ОГОГО!</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="wrap">© 2026 Golden Lion Chocolate. Имперская традиция вкуса.</div>
+        </footer>
+    </div>
+
+    <script>
+        const items = document.querySelectorAll(".reveal");
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12 });
+
+        items.forEach((item) => observer.observe(item));
+    </script>
+</body>
+</html>
